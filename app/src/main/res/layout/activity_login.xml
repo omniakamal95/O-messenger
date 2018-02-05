@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:hint="Username"
+        android:layout_margin="16dp"
+        android:inputType="text"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pw"
+        android:layout_margin="16dp"
+        android:inputType="textPassword"
+        android:hint="password"
+        android:layout_below="@+id/username"/>
+    <Button
+        android:id="@+id/Loginbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="82dp"
+        android:layout_marginLeft="82dp"
+        android:text="Login"
+        android:layout_marginBottom="24dp"
+        android:layout_below="@+id/pw"/>
+    <TextView
+        android:id="@+id/NoAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="If you don't have an account "
+        android:textSize="18dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_below="@+id/Loginbtn"/>
+    <Button
+        android:id="@+id/SignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:layout_marginRight="82dp"
+        android:layout_marginLeft="82dp"
+        android:layout_below="@+id/NoAccount"
+        />
+
+</RelativeLayout>

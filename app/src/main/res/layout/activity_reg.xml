@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.noso.myapplication.registration">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/FirstName"
+        android:hint="First Name"
+        android:layout_margin="8dp"
+        android:inputType="text"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LastName"
+        android:hint="Last Name"
+        android:layout_below="@+id/FirstName"
+        android:layout_margin="8dp"
+        android:inputType="text"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserName"
+        android:hint="Username"
+        android:layout_below="@+id/LastName"
+        android:layout_margin="8dp"
+        android:inputType="text"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Password"
+        android:hint="Password"
+        android:layout_margin="8dp"
+        android:inputType="textPassword"
+        android:layout_below="@+id/mail"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Re-password"
+        android:hint="Repeat Password"
+        android:layout_margin="8dp"
+        android:layout_below="@id/Password"
+        android:inputType="textPassword"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mail"
+        android:hint="E-mail"
+        android:layout_margin="8dp"
+        android:layout_below="@id/UserName"
+        android:inputType="text"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register"
+        android:text="Register"
+        android:textSize="18dp"
+        android:layout_marginLeft="82dp"
+        android:layout_marginRight="82dp"
+        android:layout_below="@id/Re-password"/>
+
+
+</RelativeLayout>
