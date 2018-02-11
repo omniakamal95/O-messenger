@@ -15,7 +15,7 @@ public class registration extends AppCompatActivity {
         setContentView(R.layout.activity_reg);
 
         final EditText fname = findViewById(R.id.FirstName);
-        final EditText lname = findViewById(R.id.LastName);
+
         final EditText uname = findViewById(R.id.UserName);
         final EditText mail  = findViewById(R.id.mail);
         final EditText pass  = findViewById(R.id.Password);
@@ -27,20 +27,35 @@ public class registration extends AppCompatActivity {
             public void onClick(View view) {
                 String First , Last , Username , Email , Password , RePassword;
                 First = fname.getText().toString();
-                Last = lname.getText().toString();
                 Username = uname.getText().toString();
                 Email = mail.getText().toString();
                 Password = pass.getText().toString();
                 RePassword = rpass.getText().toString();
-                if(First.isEmpty()||Last.isEmpty()||Username.isEmpty()||Email.isEmpty()||
-                        Password.isEmpty()||RePassword.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Please enter the missing information",Toast.LENGTH_LONG).show();
-                }
-                else
+                User user = new User(
+                        First,Username,Email,Password
+                );
+                if (First.length()!=0&&Username.length()!=0&&Password.length()!=0&&RePassword.length()!=0)
                 {
-                    Toast.makeText(getApplicationContext(), "Done ;)", Toast.LENGTH_LONG).show();
+                    if (Password.equals(RePassword))
+                    {
+
+                       // Create new user [sendNetworkRequest()]
+                        Toast.makeText(registration.this, "Successful", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else
+                    {
+                        Toast.makeText(registration.this, "Make sure your passwords are identical", Toast.LENGTH_SHORT).show();
+                    }
                 }
+                else {
+                    Toast.makeText(registration.this, "Check the missing fields!!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+
     }
 }
+
+

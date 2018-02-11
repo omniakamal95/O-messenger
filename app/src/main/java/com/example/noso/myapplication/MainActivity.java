@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        Intent i = new Intent(this, ChatScreen.class);
+        Intent i = new Intent(this, FriendsActivity.class);
         startActivity(i);
     }
 }
