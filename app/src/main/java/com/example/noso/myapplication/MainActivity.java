@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         TextView text = findViewById(R.id.Welcome);
         Button btn = findViewById(R.id.btn);
-
         btn.setOnClickListener(MainActivity.this);
 
 

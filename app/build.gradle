@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-
     defaultConfig {
         applicationId "com.example.noso.myapplication"
         minSdkVersion 16
@@ -30,6 +29,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.android.support:design:26.1.0'
     compile 'com.firebaseui:firebase-ui:0.6.2'
+    compile 'com.specyci:residemenu:1.6+'
+
+
     compile 'com.specyci:residemenu:1.6+'
     compile 'com.github.halysongoncalves:pugnotification:1.8.1'
     compile 'com.google.android.gms:play-services-vision:9.8.0'
