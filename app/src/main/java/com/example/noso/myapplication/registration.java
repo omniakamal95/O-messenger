@@ -40,7 +40,7 @@ public class registration extends AppCompatActivity {
                     {
 
                        // Create new user [sendNetworkRequest()]
-                        Toast.makeText(registration.this, "Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(registration.this, "Account Created", Toast.LENGTH_SHORT).show();
                     }
 
                     else
