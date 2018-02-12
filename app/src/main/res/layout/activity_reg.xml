@@ -10,23 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/FirstName"
-        android:hint="First Name"
+        android:hint="Name"
         android:layout_margin="8dp"
         android:inputType="text"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/LastName"
-        android:hint="Last Name"
-        android:layout_below="@+id/FirstName"
-        android:layout_margin="8dp"
-        android:inputType="text"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/UserName"
         android:hint="Username"
-        android:layout_below="@+id/LastName"
+        android:layout_below="@+id/FirstName"
         android:layout_margin="8dp"
         android:inputType="text"/>
     <EditText

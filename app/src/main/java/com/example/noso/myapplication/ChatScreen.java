@@ -1,5 +1,7 @@
 package com.example.noso.myapplication;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -57,7 +59,7 @@ public class ChatScreen extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==SIGN_IN_REQUEST_CODE)
         {
-            if (resultCode==RESULT_OK)
+            if (resultCode== Activity.RESULT_OK)
             {
                 Snackbar.make(activity_chat_screen,"Successfully logged in, Welcome!", Snackbar.LENGTH_SHORT).show();
                 displayChatMessage();

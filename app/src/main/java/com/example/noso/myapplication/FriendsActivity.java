@@ -1,136 +1,127 @@
 package com.example.noso.myapplication;
 
-import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Toast;
 
-import android.widget.TextView;
+import com.example.noso.myapplication.FriendsList;
+import com.example.noso.myapplication.R;
+import com.special.ResideMenu.ResideMenu;
+import com.special.ResideMenu.ResideMenuItem;
 
-public class FriendsActivity extends AppCompatActivity {
+public class FriendsActivity extends FragmentActivity implements View.OnClickListener{
+
+    private ResideMenu resideMenu;
+    private FriendsActivity mContext;
+    private ResideMenuItem itemHome;
+    private ResideMenuItem itemProfile;
+    private ResideMenuItem itemChat;
+    private ResideMenuItem itemSettings;
 
     /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     * Called when the activity is first created.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
+        mContext = this;
+        setUpMenu();
+        if( savedInstanceState == null )
+            changeFragment(new FriendsList());
+    }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+    private void setUpMenu() {
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        // attach to current activity;
+        resideMenu = new ResideMenu(this);
+        //resideMenu.setUse3D(true);
+        resideMenu.setBackground(R.drawable.menu_background);
+        resideMenu.attachToActivity(this);
+        resideMenu.setMenuListener(menuListener);
+        //valid scale factor is between 0.0f and 1.0f. leftmenu'width is 150dip.
+        resideMenu.setScaleValue(0.6f);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        // create menu items;
+        itemHome     = new ResideMenuItem(this, R.drawable.frinds,     "Friends List");
+      itemProfile  = new ResideMenuItem(this, R.drawable.req,  "Friends Request");
+        itemChat = new ResideMenuItem(this, R.drawable.chat,     "Chat");
+        itemSettings = new ResideMenuItem(this, R.drawable.usersettings, "Settings");
 
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        itemHome.setOnClickListener(this);
+        itemProfile.setOnClickListener(this);
+        itemChat.setOnClickListener(this);
+        itemSettings.setOnClickListener(this);
+
+
+        resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemChat, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_LEFT);
+
+        // You can disable a direction by setting ->
+        // resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
+
+        findViewById(R.id.title_bar_left_menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
             }
         });
 
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_friends, menu);
-        return true;
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return resideMenu.dispatchTouchEvent(ev);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onClick(View view) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (view == itemHome){
+            changeFragment(new FriendsList());
+        }else if (view == itemProfile){
+            changeFragment(new FriendRequest());
+        }else if (view == itemChat) {
+            changeFragment(new Chat());
+        }else if (view == itemSettings){
+            changeFragment(new Settings());
         }
 
-        return super.onOptionsItemSelected(item);
+
+
+        resideMenu.closeMenu();
     }
 
-
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
+    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
+        @Override
+        public void openMenu() {
+            Toast.makeText(mContext, "Menu is opened!", Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        public Fragment getItem(int position) {
-            switch (position){
-                case 0:
-                    FriendsList tab1 =new FriendsList();
-                    return tab1;
-                case 1:
-                    FriendRequest tab2 = new FriendRequest();
-                    return tab2;
-                default:
-                    return null;
+        public void closeMenu() {
+            Toast.makeText(mContext, "Menu is closed!", Toast.LENGTH_SHORT).show();
+        }
+    };
 
-            }
-        }
+    private void changeFragment(Fragment targetFragment){
+        resideMenu.clearIgnoredViewList();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment, targetFragment, "fragment")
+                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
+    }
 
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 2;
-        }
-        public CharSequence getPageTitle (int position)
-        {
-            switch (position){
-                case 0:
-                    return "Friends List";
-                case 1:
-                    return "Friend Requests";
-            }
-            return  null;
-        }
+    // What good method is to access resideMenu？
+    public ResideMenu getResideMenu(){
+        return resideMenu;
     }
 }
