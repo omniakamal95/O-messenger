@@ -23,7 +23,14 @@
             android:name=".FriendsActivity"
             android:label="@string/title_activity_friends"
             android:theme="@style/MyMaterialTheme" />
-        <activity android:name=".ChatScreen"></activity>
+        <activity android:name=".ChatScreen" />
+
+        <service
+            android:name="Services.NotificationService"
+            android:exported="false" />
+        <service
+            android:name=".services.notificationServices"
+            android:exported="false"></service>
     </application>
 
 </manifest>
