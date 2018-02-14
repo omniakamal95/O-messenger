@@ -1,5 +1,7 @@
 package com.example.noso.myapplication;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,10 @@ import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Services.NotificationService;
+
+import static android.content.Context.ALARM_SERVICE;
 
 /**
  * User: special
@@ -27,6 +33,7 @@ public class Chat extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.fragment_chat, container, false);
         listView   = (ListView) parentView.findViewById(R.id.chats);
+
         initView();
         return parentView;
     }
