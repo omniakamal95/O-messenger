@@ -19,7 +19,6 @@ import com.google.android.gms.vision.text.TextRecognizer;
 public class OCR extends AppCompatActivity {
 
     ImageView imageview;
-    Button btnprocess;
     TextView txtResult;
 
 
@@ -29,38 +28,37 @@ public class OCR extends AppCompatActivity {
         setContentView(R.layout.activity_ocr);
 
         imageview = (ImageView) findViewById(R.id.image_view);
-        btnprocess=(Button)findViewById(R.id.button_process);
         txtResult=(TextView)findViewById(R.id.textview_result);
-//asfasfa
-        final Bitmap bitmap= BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ocrtest
-                );
+
+        txtResult.setText(OCR_Function(R.drawable.ocrtest));
+    }
+    public String OCR_Function(Integer path)
+    {
+
+        imageview = (ImageView) findViewById(R.id.image_view);
+        txtResult=(TextView)findViewById(R.id.textview_result);
+        final Bitmap bitmap= BitmapFactory.decodeResource(getApplicationContext().getResources(),path
+        );
         imageview.setImageBitmap(bitmap);
-        btnprocess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextRecognizer textRecognizer=new TextRecognizer.Builder(getApplicationContext()).build();
-                if(!textRecognizer.isOperational()) {
-                    Log.e("ERROR", "Detector Dependecies are not ready yet");
-                }
-                else
-                {
-                    Frame frame=new Frame.Builder().setBitmap(bitmap).build();
-                    SparseArray<TextBlock> items=textRecognizer.detect(frame);
-                    StringBuilder stringBuilder=new StringBuilder();
-                    for(int i=0;i<items.size();i++)
-                    {
-                        TextBlock item = items.valueAt(i);
-                        stringBuilder.append(item.getValue());
-                        stringBuilder.append("\n");
-
-                    }
-                    txtResult.setText(stringBuilder.toString());
-                    Toast.makeText(OCR.this, stringBuilder.toString(),
-                            Toast.LENGTH_LONG).show();
-                }
-
+        TextRecognizer textRecognizer=new TextRecognizer.Builder(getApplicationContext()).build();
+        if(!textRecognizer.isOperational()) {
+            Log.e("ERROR", "Detector Dependecies are not ready yet");
+            return "";
+        }
+        else
+        {
+            Frame frame=new Frame.Builder().setBitmap(bitmap).build();
+            SparseArray<TextBlock> items=textRecognizer.detect(frame);
+            StringBuilder stringBuilder=new StringBuilder();
+            for(int i=0;i<items.size();i++)
+            {
+                TextBlock item = items.valueAt(i);
+                stringBuilder.append(item.getValue());
+                stringBuilder.append("\n");
             }
-        });
+            return stringBuilder.toString();
+        }
+
+
     }
 }
