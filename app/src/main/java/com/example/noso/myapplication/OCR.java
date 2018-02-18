@@ -31,7 +31,7 @@ public class OCR extends AppCompatActivity {
         imageview = (ImageView) findViewById(R.id.image_view);
         btnprocess=(Button)findViewById(R.id.button_process);
         txtResult=(TextView)findViewById(R.id.textview_result);
-
+//asfasfa
         final Bitmap bitmap= BitmapFactory.decodeResource(getApplicationContext().getResources(),
                 R.drawable.ocrtest
                 );

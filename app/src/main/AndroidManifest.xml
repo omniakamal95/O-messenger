@@ -30,7 +30,12 @@
             android:exported="false" />
         <service
             android:name=".services.notificationServices"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".OCR"></activity>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr"/>
     </application>
 
 </manifest>
