@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -32,7 +33,6 @@ dependencies {
     compile 'com.firebaseui:firebase-ui:0.6.2'
     compile 'com.specyci:residemenu:1.6+'
     compile 'com.github.halysongoncalves:pugnotification:1.8.1'
-
 
 
 }

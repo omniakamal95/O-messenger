@@ -15,26 +15,22 @@ import com.example.noso.myapplication.services.notificationServices;
 
 import Services.NotificationService;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView text = findViewById(R.id.Welcome);
-        Button btn = findViewById(R.id.btn);
+       // TextView text = findViewById(R.id.Welcome);
+        //Button btn = findViewById(R.id.btn);
 
-        btn.setOnClickListener(MainActivity.this);
-
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(this, notificationServices.class);
-        this.startService(intent);
-        Intent i = new Intent(this, FriendsActivity.class);
+        //btn.setOnClickListener(MainActivity.this);
+        Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
+
+
     }
+
+
 }

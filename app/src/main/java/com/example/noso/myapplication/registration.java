@@ -1,5 +1,6 @@
 package com.example.noso.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,8 @@ public class registration extends AppCompatActivity {
 
                        // Create new user [sendNetworkRequest()]
                         Toast.makeText(registration.this, "Account Created", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(registration.this, WelcomeActivity.class);
+                        startActivity(i);
                     }
 
                     else

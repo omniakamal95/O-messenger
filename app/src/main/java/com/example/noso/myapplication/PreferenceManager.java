@@ -22,6 +22,7 @@ public class PreferenceManager extends AppCompatActivity {
     private static final String IS_LOGIN = "IsLoggedIn";
     public static final String KEY_NAME = "Username";
     public static final String KEY_PASSWORD = "Password";
+    private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
     public PreferenceManager() {
     }
@@ -66,5 +67,15 @@ public class PreferenceManager extends AppCompatActivity {
         Intent i = new Intent(context, LoginActivity.class);
         context.startActivity(i);
     }
+   /* public void setFirstTimeLaunch(boolean isFirstTime) {
+        editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
+        editor.commit();
+    }
+*/
+  /*  public boolean isFirstTimeLaunch() {
+        return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
+    }
+    */
+
 }
 
