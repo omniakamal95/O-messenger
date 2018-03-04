@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.noso.myapplication.services.notificationServices;
+
 public class LoginActivity extends AppCompatActivity  {
 
     EditText name ;
@@ -48,7 +50,9 @@ public class LoginActivity extends AppCompatActivity  {
                {
                    Toast.makeText(getApplicationContext(), "Login Successful !", Toast.LENGTH_LONG).show();
                    session.LoginSession(Username, Password);
-                   Intent i = new Intent(getApplicationContext(), FriendsActivity.class);
+                   Intent intent = new Intent(getApplicationContext(), notificationServices.class);
+                   getApplicationContext().startService(intent);
+                  Intent i = new Intent(LoginActivity.this, Chats.class);
                    startActivity(i);
                }
 
