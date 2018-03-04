@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-
-import com.example.noso.myapplication.ChatScreen;
-import com.example.noso.myapplication.MainActivity;
 import com.example.noso.myapplication.R;
 
 import br.com.goncalves.pugnotification.notification.PugNotification;
@@ -38,11 +35,11 @@ public class notificationServices extends IntentService {
         String message = ("test test test");
         PugNotification.with(this)
                 .load()
-                .title("O-messenger")
+                .title("title")
                 .message(message)
-                .bigTextStyle("New Message")
-                .smallIcon(R.drawable.icon_profile)
-                .largeIcon(R.drawable.icon_profile)
+                .bigTextStyle("text")
+                .smallIcon(R.drawable.pugnotification_ic_launcher)
+                .largeIcon(R.drawable.pugnotification_ic_launcher)
                 .flags(Notification.DEFAULT_ALL)
                 .simple()
                 .build();

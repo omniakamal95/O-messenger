@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.noso.myapplication.beans.User;
+
 public class registration extends AppCompatActivity {
 
     @Override
@@ -44,10 +46,7 @@ public class registration extends AppCompatActivity {
                         Toast.makeText(registration.this, "Account Created", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(registration.this, WelcomeActivity.class);
                         startActivity(i);
-                    }
-
-                    else
-                    {
+                    } else {
                         Toast.makeText(registration.this, "Make sure your passwords are identical", Toast.LENGTH_SHORT).show();
                     }
                 }

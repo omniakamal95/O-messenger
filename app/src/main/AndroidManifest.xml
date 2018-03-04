@@ -26,7 +26,7 @@
         <activity android:name=".ChatScreen" />
 
         <service
-            android:name=".Services$NotificationService"
+            android:name="Services.NotificationService"
             android:exported="false" />
         <service
             android:name=".services.notificationServices"

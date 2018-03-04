@@ -66,8 +66,8 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
 
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
-    //    resideMenu.addMenuItem(itemChat, ResideMenu.DIRECTION_LEFT);
-      //  resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemChat, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_LEFT);
 
         // You can disable a direction by setting ->
         // resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);

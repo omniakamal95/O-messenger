@@ -28,6 +28,40 @@ public class WelcomeActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnSkip, btnNext;
+    //  viewpager change listener
+    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int position) {
+            addBottomDots(position);
+
+            // changing the next button text 'NEXT' / 'GOT IT'
+            if (position == layouts.length - 1) {
+                // last page. make button text to GOT IT
+                btnNext.setText(getString(R.string.start));
+                btnSkip.setVisibility(View.GONE);
+                Intent intent = new Intent(getApplicationContext(), notificationServices.class);
+                getApplicationContext().startService(intent);
+                Intent i = new Intent(WelcomeActivity.this, Chats.class);
+                startActivity(i);
+
+            } else {
+                // still pages are left
+                btnNext.setText(getString(R.string.next));
+                btnSkip.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+
+        }
+    };
     private PreferenceManager prefManager;
 
     @Override
@@ -48,7 +82,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_welcome);
 
-        viewPager =  findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnSkip = (Button) findViewById(R.id.btn_skip);
         btnNext = (Button) findViewById(R.id.btn_next);
@@ -60,7 +94,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 R.layout.welcome1,
                 R.layout.welcome2,
                 R.layout.welcome3,
-               };
+        };
 
         // adding bottom dots
         addBottomDots(0);
@@ -123,41 +157,6 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(new Intent(WelcomeActivity.this, Chats.class));
         finish();
     }
-
-    //  viewpager change listener
-    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
-
-        @Override
-        public void onPageSelected(int position) {
-            addBottomDots(position);
-
-            // changing the next button text 'NEXT' / 'GOT IT'
-            if (position == layouts.length - 1) {
-                // last page. make button text to GOT IT
-                btnNext.setText(getString(R.string.start));
-                btnSkip.setVisibility(View.GONE);
-                Intent intent = new Intent(getApplicationContext(), notificationServices.class);
-                getApplicationContext().startService(intent);
-                Intent i = new Intent(WelcomeActivity.this, Chats.class);
-                startActivity(i);
-
-            } else {
-                // still pages are left
-                btnNext.setText(getString(R.string.next));
-                btnSkip.setVisibility(View.VISIBLE);
-            }
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-
-        }
-    };
 
     /**
      * Making notification bar transparent

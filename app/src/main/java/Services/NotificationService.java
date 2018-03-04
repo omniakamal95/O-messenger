@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-
-import com.example.noso.myapplication.ChatScreen;
-import com.example.noso.myapplication.MainActivity;
+import com.example.noso.myapplication.Chats;
 import com.example.noso.myapplication.R;
 
 import br.com.goncalves.pugnotification.notification.PugNotification;
