@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GraduationProject.iml" filepath="$PROJECT_DIR$/GraduationProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/GraduationProject-ocr.iml" filepath="$PROJECT_DIR$/GraduationProject-ocr.iml" />
+      <module fileurl="file://G:\O\MyApplication5\GraduationProject.iml" filepath="G:\O\MyApplication5\GraduationProject.iml" />
+      <module fileurl="file://G:\O\MyApplication5\GraduationProject-ocr.iml" filepath="G:\O\MyApplication5\GraduationProject-ocr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyApplication5.iml" filepath="$PROJECT_DIR$/MyApplication5.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

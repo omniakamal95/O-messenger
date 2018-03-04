@@ -42,7 +42,7 @@ public class NotificationService extends IntentService {
                 .largeIcon(R.drawable.icon_profile)
                 .flags(Notification.DEFAULT_ALL)
                 .autoCancel(true)
-                .click(MainActivity.class)
+                .click(Chats.class)
                 .simple()
                 .build();
     }
