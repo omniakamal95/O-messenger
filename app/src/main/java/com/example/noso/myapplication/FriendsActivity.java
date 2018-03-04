@@ -8,12 +8,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.noso.myapplication.FriendsList;
-import com.example.noso.myapplication.R;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
-public class FriendsActivity extends FragmentActivity implements View.OnClickListener{
+public class FriendsActivity extends FragmentActivity implements View.OnClickListener {
 
     private ResideMenu resideMenu;
     private FriendsActivity mContext;
@@ -21,6 +19,17 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
     private ResideMenuItem itemProfile;
     private ResideMenuItem itemChat;
     private ResideMenuItem itemSettings;
+    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
+        @Override
+        public void openMenu() {
+            Toast.makeText(mContext, "Menu is opened!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void closeMenu() {
+            Toast.makeText(mContext, "Menu is closed!", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     /**
      * Called when the activity is first created.
@@ -31,7 +40,7 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
         setContentView(R.layout.activity_friends);
         mContext = this;
         setUpMenu();
-        if( savedInstanceState == null )
+        if (savedInstanceState == null)
             changeFragment(new FriendsList());
     }
 
@@ -47,15 +56,15 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
         resideMenu.setScaleValue(0.6f);
 
         // create menu items;
-        itemHome     = new ResideMenuItem(this, R.drawable.frinds,     "Friends List");
-      itemProfile  = new ResideMenuItem(this, R.drawable.req,  "Friends Request");
+        itemHome = new ResideMenuItem(this, R.drawable.frinds, "Friends List");
+        itemProfile = new ResideMenuItem(this, R.drawable.req, "Friends Request");
 
         itemSettings = new ResideMenuItem(this, R.drawable.usersettings, "Settings");
 
 
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
-     //   itemChat.setOnClickListener(this);
+        //   itemChat.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
 
 
@@ -84,34 +93,19 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
 
-        if (view == itemHome){
+        if (view == itemHome) {
             changeFragment(new FriendsList());
-        }else if (view == itemProfile){
+        } else if (view == itemProfile) {
             changeFragment(new FriendRequest());
-        }
-
-        else if (view == itemSettings){
+        } else if (view == itemSettings) {
             changeFragment(new Settings());
         }
-
 
 
         resideMenu.closeMenu();
     }
 
-    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
-        @Override
-        public void openMenu() {
-            Toast.makeText(mContext, "Menu is opened!", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void closeMenu() {
-            Toast.makeText(mContext, "Menu is closed!", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private void changeFragment(Fragment targetFragment){
+    private void changeFragment(Fragment targetFragment) {
         resideMenu.clearIgnoredViewList();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -121,7 +115,7 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
     }
 
     // What good method is to access resideMenu？
-    public ResideMenu getResideMenu(){
+    public ResideMenu getResideMenu() {
         return resideMenu;
     }
 }

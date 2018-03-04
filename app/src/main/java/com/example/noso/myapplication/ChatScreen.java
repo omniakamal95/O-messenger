@@ -24,21 +24,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ChatScreen extends AppCompatActivity {
-    private static int SIGN_IN_REQUEST_CODE=1;
+    private static int SIGN_IN_REQUEST_CODE = 1;
     RelativeLayout activity_chat_screen;
     FloatingActionButton fab;
     private FirebaseListAdapter<ChatMessage> adapter;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.menu_Sign_out)
-        {AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
-                Snackbar.make(activity_chat_screen,"You have been signed out. ", Snackbar.LENGTH_SHORT).show();
-                finish();
-            }
-        });
+        if (item.getItemId() == R.id.menu_Sign_out) {
+            AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
+                    Snackbar.make(activity_chat_screen, "You have been signed out. ", Snackbar.LENGTH_SHORT).show();
+                    finish();
+                }
+            });
 
         }
         return true;
@@ -46,23 +46,19 @@ public class ChatScreen extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.message_menu,menu);
+        getMenuInflater().inflate(R.menu.message_menu, menu);
         return true;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==SIGN_IN_REQUEST_CODE)
-        {
-            if (resultCode== Activity.RESULT_OK)
-            {
-                Snackbar.make(activity_chat_screen,"Successfully logged in, Welcome!", Snackbar.LENGTH_SHORT).show();
+        if (requestCode == SIGN_IN_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Snackbar.make(activity_chat_screen, "Successfully logged in, Welcome!", Snackbar.LENGTH_SHORT).show();
                 displayChatMessage();
-            }
-            else
-            {
-                Snackbar.make(activity_chat_screen,"We couldn't sign you in, please try again later", Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(activity_chat_screen, "We couldn't sign you in, please try again later", Snackbar.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -73,7 +69,7 @@ public class ChatScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_screen);
         activity_chat_screen = findViewById(R.id.chat_screen);
-        fab= findViewById(R.id.sendFab);
+        fab = findViewById(R.id.sendFab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,14 +79,11 @@ public class ChatScreen extends AppCompatActivity {
                 input.setText("");
             }
         });
-        if(FirebaseAuth.getInstance().getCurrentUser()==null)
-        {
-            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),SIGN_IN_REQUEST_CODE);
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(), SIGN_IN_REQUEST_CODE);
 
-        }
-        else
-        {
-            Snackbar.make(activity_chat_screen,"Welcome "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(activity_chat_screen, "Welcome " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Snackbar.LENGTH_SHORT).show();
             displayChatMessage();
 
         }
@@ -98,16 +91,16 @@ public class ChatScreen extends AppCompatActivity {
 
     private void displayChatMessage() {
         ListView ListOfMessages = findViewById(R.id.list_of_messages);
-        adapter= new FirebaseListAdapter<ChatMessage>(this,ChatMessage.class,R.layout.list_view,FirebaseDatabase.getInstance().getReference()) {
+        adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class, R.layout.list_view, FirebaseDatabase.getInstance().getReference()) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
                 TextView MessageText, MessageUser, MessageTime;
-                MessageText=v.findViewById(R.id.message_text);
-                MessageUser=v.findViewById(R.id.message_user);
-                MessageTime=v.findViewById(R.id.message_time);
+                MessageText = v.findViewById(R.id.message_text);
+                MessageUser = v.findViewById(R.id.message_user);
+                MessageTime = v.findViewById(R.id.message_time);
                 MessageText.setText(model.getMessagetext());
                 MessageUser.setText(model.getMessageuser());
-                MessageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",model.getMessagetime()));
+                MessageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessagetime()));
             }
         };
         ListOfMessages.setAdapter(adapter);

@@ -3,12 +3,9 @@ package Services;
 import android.app.IntentService;
 import android.app.Notification;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
-
-import com.example.noso.myapplication.ChatScreen;
-import com.example.noso.myapplication.MainActivity;
+import com.example.noso.myapplication.Chats;
 import com.example.noso.myapplication.R;
 
 import br.com.goncalves.pugnotification.notification.PugNotification;
@@ -44,7 +41,7 @@ public class NotificationService extends IntentService {
                 .largeIcon(R.drawable.icon_profile)
                 .flags(Notification.DEFAULT_ALL)
                 .autoCancel(true)
-                .click(MainActivity.class)
+                .click(Chats.class)
                 .simple()
                 .build();
     }
@@ -52,9 +49,9 @@ public class NotificationService extends IntentService {
 
     private boolean isNotificationNeeded() {
         Toast.makeText(this, "ay7agaa", Toast.LENGTH_SHORT).show();
-        return  true;
+        return true;
     }
-    }
+}
 
 
 

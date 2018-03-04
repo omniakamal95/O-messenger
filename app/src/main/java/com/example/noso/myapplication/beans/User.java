@@ -4,7 +4,7 @@ package com.example.noso.myapplication.beans;
  * Created by omnia on 2/10/2018.
  */
 
-public class User  {
+public class User {
     Friends[] friends;
     private Integer id;
     private String name;
@@ -60,7 +60,6 @@ public class User  {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
 
     public Friends[] getFriends() {

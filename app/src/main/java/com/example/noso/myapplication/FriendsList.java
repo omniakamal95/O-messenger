@@ -1,16 +1,17 @@
 package com.example.noso.myapplication;
 
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: special
@@ -26,12 +27,12 @@ public class FriendsList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.friends_list, container, false);
-        listView   = (ListView) parentView.findViewById(R.id.friendsList);
+        listView = (ListView) parentView.findViewById(R.id.friendsList);
         initView();
         return parentView;
     }
 
-    private void initView(){
+    private void initView() {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
@@ -45,7 +46,7 @@ public class FriendsList extends Fragment {
         });
     }
 
-    private ArrayList<String> getCalendarData(){
+    private ArrayList<String> getCalendarData() {
         ArrayList<String> calendarList = new ArrayList<String>();
         calendarList.add("New Year's Day");
         calendarList.add("St. Valentine's Day");

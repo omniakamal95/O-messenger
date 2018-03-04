@@ -3,12 +3,8 @@ package com.example.noso.myapplication.services;
 import android.app.IntentService;
 import android.app.Notification;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
-
-import com.example.noso.myapplication.ChatScreen;
-import com.example.noso.myapplication.MainActivity;
 import com.example.noso.myapplication.R;
 
 import br.com.goncalves.pugnotification.notification.PugNotification;
@@ -51,7 +47,7 @@ public class notificationServices extends IntentService {
 
     private boolean isNotificationNeeded() {
         Toast.makeText(this, "ay7agaa", Toast.LENGTH_SHORT).show();
-        return  true;
+        return true;
     }
 }
 

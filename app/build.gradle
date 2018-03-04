@@ -32,16 +32,7 @@ dependencies {
     compile 'com.firebaseui:firebase-ui:0.6.2'
     compile 'com.specyci:residemenu:1.6+'
     compile 'com.github.halysongoncalves:pugnotification:1.8.1'
-
-
-
-    compile 'com.specyci:residemenu:1.6+'
-    compile 'com.github.halysongoncalves:pugnotification:1.8.1'
-<<<<<<< HEAD
-
-=======
     compile 'com.google.android.gms:play-services-vision:9.8.0'
->>>>>>> OCR
 
 
 }
