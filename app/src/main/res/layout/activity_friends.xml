@@ -10,6 +10,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layout_top">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/Friends_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -29,13 +36,10 @@
                 android:layout_marginLeft="10dp"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="352dp"
                 android:layout_height="wrap_content"
-                android:padding="7dp"
-                android:text="Chatting Application"
-                android:textSize="24sp"
-                android:textColor="#999999"
-                android:layout_gravity="center"/>
+                android:textSize="20sp"
+                android:text="                     Manage Friends" />
 
 
         </FrameLayout>

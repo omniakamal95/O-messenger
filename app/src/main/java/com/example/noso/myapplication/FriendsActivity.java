@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -19,8 +20,8 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
     private FriendsActivity mContext;
     private ResideMenuItem itemHome;
     private ResideMenuItem itemProfile;
-    private ResideMenuItem itemChat;
-    private ResideMenuItem itemSettings;
+   // private ResideMenuItem itemChat;
+ //   private ResideMenuItem itemSettings;
 
     /**
      * Called when the activity is first created.
@@ -29,6 +30,11 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
+        //Toolbar myToolbar = (Toolbar) findViewById(R.id.chats_toolbar);
+        //myToolbar.setTitle("Chats");
+        //myToolbar.setBackgroundColor(R.color.navigationBarColor);
+        //myToolbar.setTitleTextColor(R.color.windowBackground);
+        //setSupportActionBar(myToolbar);
         mContext = this;
         setUpMenu();
         if( savedInstanceState == null )
@@ -50,19 +56,18 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
         itemHome     = new ResideMenuItem(this, R.drawable.frinds,     "Friends List");
       itemProfile  = new ResideMenuItem(this, R.drawable.req,  "Friends Request");
 
-        itemSettings = new ResideMenuItem(this, R.drawable.usersettings, "Settings");
 
 
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
      //   itemChat.setOnClickListener(this);
-        itemSettings.setOnClickListener(this);
+      //  itemSettings.setOnClickListener(this);
 
 
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
-        resideMenu.addMenuItem(itemChat, ResideMenu.DIRECTION_LEFT);
-        resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_LEFT);
+    //    resideMenu.addMenuItem(itemChat, ResideMenu.DIRECTION_LEFT);
+      //  resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_LEFT);
 
         // You can disable a direction by setting ->
         // resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
@@ -90,9 +95,7 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
             changeFragment(new FriendRequest());
         }
 
-        else if (view == itemSettings){
-            changeFragment(new Settings());
-        }
+
 
 
 

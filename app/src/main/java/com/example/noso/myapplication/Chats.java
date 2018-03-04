@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
 
 import com.example.noso.myapplication.services.NewConversation;
 
@@ -15,10 +19,18 @@ public class Chats extends AppCompatActivity {
     private ListView listView;
     FloatingActionButton fab;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.chats_toolbar);
+        myToolbar.setTitle("Chats");
+        myToolbar.setBackgroundColor(R.color.navigationBarColor);
+        myToolbar.setTitleTextColor(R.color.windowBackground);
+        setSupportActionBar(myToolbar);
+
+
         listView = (ListView) findViewById(R.id.chats);
         fab = findViewById(R.id.newConversation);
         String[] itemname = {"Omnia Kamal", "Amira Tarek", "Sherif Amr", "Abdelrahman Tarek", "Mostafa Amr"};
@@ -35,6 +47,7 @@ public class Chats extends AppCompatActivity {
             }
 
         });
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,5 +57,26 @@ public class Chats extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.manageFriends:
+            Intent i = new Intent(Chats.this,FriendsActivity.class);
+                startActivity(i);
+                return  true;
+            case R.id.settingsAcc:
+                Intent q = new Intent(Chats.this, Setting.class);
+                startActivity(q);
+                return true;
+        }
+
+        return false;
+    }
 }
