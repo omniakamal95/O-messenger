@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.noso.myapplication.services.NewConversation"
+    tools:showIn="@layout/activity_new_conversation">
+
+    <EditText
+        android:id="@+id/newFriend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/searchFriend"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_toEndOf="@+id/searchFriend"
+        android:layout_toRightOf="@+id/searchFriend" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/searchFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_search" />
+
+    <ListView
+        android:id="@+id/retrivedFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/newFriend"
+        android:layout_marginTop="60dp"></ListView>
+
+</RelativeLayout>

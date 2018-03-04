@@ -26,7 +26,7 @@
         <activity android:name=".ChatScreen" />
 
         <service
-            android:name="Services$NotificationService"
+            android:name=".Services$NotificationService"
             android:exported="false" />
         <service
             android:name=".services.notificationServices"
@@ -34,7 +34,11 @@
 
         <activity android:name=".IntroSlider" />
         <activity android:name=".WelcomeActivity" />
-        <activity android:name=".Chats"></activity>
+        <activity android:name=".Chats" />
+        <activity
+            android:name=".services.NewConversation"
+            android:label="@string/title_activity_new_conversation"
+            android:theme="@style/MyMaterialTheme"></activity>
     </application>
 
 </manifest>
