@@ -1,4 +1,4 @@
-package com.example.noso.myapplication;
+package com.example.noso.myapplication.beans;
 
 import java.util.Date;
 
