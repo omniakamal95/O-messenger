@@ -1,14 +1,25 @@
-package com.example.noso.myapplication;
+package com.example.noso.myapplication.beans;
 
 /**
  * Created by omnia on 2/10/2018.
  */
 
 public class User  {
+    Friends[] friends;
     private Integer id;
     private String name;
     private String userName;
     private String email;
+    private String password;
+
+    public User(String name, String userName, String email, String password) {
+
+        this.name = name;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+
+    }
 
     public String getPassword() {
         return password;
@@ -16,19 +27,6 @@ public class User  {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    private String password;
-
-    Friends [] friends;
-
-    public User( String name, String userName, String email, String password) {
-
-        this.name = name;
-        this.userName = userName;
-        this.email = email;
-       this.password = password;
-
     }
 
     public Integer getId() {

@@ -8,24 +8,24 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.example.noso.myapplication.OCR">>
+    tools:context="com.example.noso.myapplication.OCR">
 
         <ImageView
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerInside"
+            android:id="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/image_view" />
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerInside" />
 
 
         <TextView
             android:id="@+id/textview_result"
-            android:text="NO TEXT"
-            android:gravity="center_horizontal"
-            android:textSize="24sp"
-            android:layout_below="@+id/image_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            android:gravity="center_horizontal"
+            android:text="NO TEXT"
+            android:textSize="24sp" />
 
 
     </RelativeLayout>
