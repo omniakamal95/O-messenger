@@ -49,13 +49,13 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
         // create menu items;
         itemHome     = new ResideMenuItem(this, R.drawable.frinds,     "Friends List");
       itemProfile  = new ResideMenuItem(this, R.drawable.req,  "Friends Request");
-        itemChat = new ResideMenuItem(this, R.drawable.chat,     "Chat");
+
         itemSettings = new ResideMenuItem(this, R.drawable.usersettings, "Settings");
 
 
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
-        itemChat.setOnClickListener(this);
+     //   itemChat.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
 
 
@@ -88,9 +88,9 @@ public class FriendsActivity extends FragmentActivity implements View.OnClickLis
             changeFragment(new FriendsList());
         }else if (view == itemProfile){
             changeFragment(new FriendRequest());
-        }else if (view == itemChat) {
-            changeFragment(new Chat());
-        }else if (view == itemSettings){
+        }
+
+        else if (view == itemSettings){
             changeFragment(new Settings());
         }
 

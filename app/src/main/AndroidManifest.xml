@@ -36,6 +36,11 @@
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr"/>
+            android:exported="false" />
+
+        <activity android:name=".IntroSlider" />
+        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".Chats"></activity>
     </application>
 
 </manifest>
