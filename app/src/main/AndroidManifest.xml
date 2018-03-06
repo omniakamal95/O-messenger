@@ -25,7 +25,7 @@
         <activity android:name=".ChatScreen" />
 
         <service
-            android:name="Services.NotificationService"
+            android:name="Services$NotificationService"
             android:exported="false" />
         <service
             android:name=".services.notificationServices"
@@ -38,7 +38,7 @@
             android:name=".services.NewConversation"
             android:label="@string/title_activity_new_conversation"
             android:theme="@style/MyMaterialTheme" />
-        <activity android:name=".Setting"></activity>
+        <activity android:name=".Setting" />
     </application>
 
 </manifest>

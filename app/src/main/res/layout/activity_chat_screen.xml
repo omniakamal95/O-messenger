@@ -2,48 +2,63 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/chat_screen"
     tools:context="com.example.noso.myapplication.ChatScreen">
+
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/sendFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:clickable="true"
         android:src="@drawable/ic_send"
-        android:id="@+id/sendFab"
         android:tint="#FFF"
-android:layout_alignParentBottom="true"
+        app:fabSize="mini" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/sendOCR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/sendFab"
         android:layout_alignParentEnd="true"
-app:fabSize="mini"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_send"
+        android:tint="#000"
+        app:fabSize="mini" />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/sendFab"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
 
-        android:layout_alignParentLeft="true">
+        android:layout_toLeftOf="@+id/sendFab">
+
         <EditText
+            android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Message.."
-            android:id="@+id/input"
-            />
+            android:hint="Message.." />
 
     </android.support.design.widget.TextInputLayout>
+
     <ListView
+        android:id="@+id/list_of_messages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/list_of_messages"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_above="@id/sendFab"
-        android:dividerHeight="16dp"
-        android:divider="@android:color/transparent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginBottom="16dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="16dp"
 
         ></ListView>
 </RelativeLayout>
