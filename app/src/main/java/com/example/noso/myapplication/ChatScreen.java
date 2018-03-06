@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -21,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.noso.myapplication.beans.ChatMessage;
 import com.firebase.ui.auth.AuthUI;
@@ -31,6 +34,9 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class ChatScreen extends AppCompatActivity {
     public static final int GET_FROM_GALLERY = 3;
@@ -65,34 +71,32 @@ public class ChatScreen extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == SIGN_IN_REQUEST_CODE) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                Snackbar.make(activity_chat_screen, "Successfully logged in, Welcome!", Snackbar.LENGTH_SHORT).show();
-//                displayChatMessage();
-//            } else {
-//                Snackbar.make(activity_chat_screen, "We couldn't sign you in, please try again later", Snackbar.LENGTH_SHORT).show();
-//                finish();
-//            }
-//    }
         if ((requestCode == GET_FROM_GALLERY || requestCode == GET_FROM_CAMERA) && resultCode == Activity.RESULT_OK) {
-//            pp.setImageURI(data.getData());
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            Log.e("homie", "onActivityResult: " + bitmap);
-            TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-            if (!textRecognizer.isOperational()) {
-                Log.e("ERROR", "Detector Dependecies are not ready yet");
-            } else {
-                Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-                SparseArray<TextBlock> items = textRecognizer.detect(frame);
-                StringBuilder stringBuilder = new StringBuilder();
-                for (int i = 0; i < items.size(); i++) {
-                    TextBlock item = items.valueAt(i);
-                    stringBuilder.append(item.getValue());
-                    stringBuilder.append("\n");
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+                Log.e("homie", "onActivityResult: " + bitmap);
+                TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+                if (!textRecognizer.isOperational()) {
+                    Log.e("ERROR", "Detector Dependecies are not ready yet");
+                } else {
+                    Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+                    SparseArray<TextBlock> items = textRecognizer.detect(frame);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int i = 0; i < items.size(); i++) {
+                        TextBlock item = items.valueAt(i);
+                        stringBuilder.append(item.getValue());
+                        stringBuilder.append("\n");
+                    }
+                    input.setText(stringBuilder.toString());
+                    Log.d("homie", "onActivityResult: " + stringBuilder.length());
                 }
-                input.setText(stringBuilder.toString());
-                Log.d("homie", "onActivityResult: " + stringBuilder.length());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(ChatScreen.this, "Something went wrong", Toast.LENGTH_LONG).show();
             }
+
         }
     }
 

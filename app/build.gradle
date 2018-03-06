@@ -36,6 +36,8 @@ dependencies {
     compile 'com.github.lguipeng:BubbleView:1.0.1'
 
     compile 'com.google.android.gms:play-services-vision:9.8.0'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 }
 apply plugin: 'com.google.gms.google-services'
