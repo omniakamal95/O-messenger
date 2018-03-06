@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
- * User: special
+ * Users: special
  * Date: 13-12-22
  * Time: 下午3:26
  * Mail: specialcyci@gmail.com

@@ -22,8 +22,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class registration extends AppCompatActivity implements View.OnClickListener {
+public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "homie";
     EditText fName, uName, mail, pass, rPass;
     TextInputLayout mailTIL, pwTIL, rePwTIL;
     Button Regbtn;
@@ -142,29 +143,34 @@ public class registration extends AppCompatActivity implements View.OnClickListe
             Email = mail.getText().toString();
             Password = pass.getText().toString();
             Users users = new Users(Username, Email, Password);
+            Log.d(TAG, "onClick: " + users.getEmail() + " " + users.getPassword() + " " + users.getUsername() + " " + users.getFcm_token());
 
             if (mailGood && passGood && rPassGood && !First.isEmpty() && !Username.isEmpty()) {
-                Toast.makeText(registration.this, "Account Created", Toast.LENGTH_SHORT).show();
                 //TODO: @POST signup
                 Retrofit.Builder builder = new Retrofit.Builder()
-                        .baseUrl("localhost:3000/")
+                        .baseUrl("http://10.0.2.2:3000/")
                         .addConverterFactory(GsonConverterFactory.create());
                 Retrofit retrofit = builder.build();
                 UsersClient client = retrofit.create(UsersClient.class);
                 Call<Users> call = client.signup(users);
+                Log.d("homie", "onClick: " + call.toString());
                 call.enqueue(new Callback<Users>() {
                     @Override
                     public void onResponse(Call<Users> call, Response<Users> response) {
                         Users users = response.body();
-                        Log.d("homie", "onResponse: " + users.getId());
-                        Intent i = new Intent(registration.this, WelcomeActivity.class);
+                        String xAuth = response.headers().get("x-auth");
+                        //TODO:: save x-auth and user data in shared preferences
+//                        Log.d("homie", "onResponse: "+ (users != null ? users.getId() : null));
+//                        Log.d("homie", "onResponse: "+call);
+                        Intent i = new Intent(RegistrationActivity.this, WelcomeActivity.class);
                         startActivity(i);
                         finish();
                     }
 
                     @Override
                     public void onFailure(Call<Users> call, Throwable t) {
-                        Toast.makeText(registration.this, "Sorry, something went wrong!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrationActivity.this, "Sorry, something went wrong!", Toast.LENGTH_LONG).show();
+                        Log.e("homie", "onFailure: ", t);
                     }
                 });
 
@@ -183,6 +189,5 @@ public class registration extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
         finish();
     }
+
 }
-
-

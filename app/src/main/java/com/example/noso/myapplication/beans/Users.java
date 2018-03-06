@@ -4,21 +4,24 @@ package com.example.noso.myapplication.beans;
  * Created by omnia on 2/10/2018.
  */
 
-public class User {
+public class Users {
     Friends[] friends;
-    private Integer id;
-    private String name;
-    private String userName;
+    private String _id;
+    private String username;
     private String email;
     private String password;
+    private String fcm_token;
 
-    public User(String name, String userName, String email, String password) {
+    public Users(String username, String email, String password) {
 
-        this.name = name;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
+        fcm_token = "123ABC";
 
+    }
+
+    public Users() {
     }
 
     public String getPassword() {
@@ -29,28 +32,20 @@ public class User {
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this._id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -68,5 +63,13 @@ public class User {
 
     public void setFriends(Friends[] friends) {
         this.friends = friends;
+    }
+
+    public String getFcm_token() {
+        return fcm_token;
+    }
+
+    public void setFcm_token(String fcm_token) {
+        this.fcm_token = fcm_token;
     }
 }
