@@ -15,14 +15,14 @@ import java.util.HashMap;
 
 public class PreferenceManager extends AppCompatActivity {
 
+    public static final String KEY_NAME = "Username";
+    public static final String KEY_PASSWORD = "Password";
+    private static final String IS_LOGIN = "IsLoggedIn";
+    private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context context;
     Integer mode = 0;
-    private static final String IS_LOGIN = "IsLoggedIn";
-    public static final String KEY_NAME = "Username";
-    public static final String KEY_PASSWORD = "Password";
-    private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
     public PreferenceManager() {
     }
@@ -42,7 +42,7 @@ public class PreferenceManager extends AppCompatActivity {
 
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
-        // user name
+        // user mail
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
 
         // return user
