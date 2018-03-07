@@ -29,11 +29,12 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     TextInputLayout mailTIL, pwTIL, rePwTIL;
     Button Regbtn;
     boolean mailGood, passGood, rPassGood;
+    PreferenceManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reg);
+        setContentView(R.layout.activity_registration);
 
         mailGood = passGood = rPassGood = false;
 
@@ -46,6 +47,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         Regbtn = findViewById(R.id.register);
         mailTIL = findViewById(R.id.mail_til);
         rePwTIL = findViewById(R.id.rePW_til);
+        session = new PreferenceManager(getApplicationContext());
 
         mail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -137,7 +139,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.register) {
-            String First, Username, Email, Password;
+            final String First, Username, Email, Password;
             First = fName.getText().toString();
             Username = uName.getText().toString();
             Email = mail.getText().toString();
@@ -146,7 +148,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             Log.d(TAG, "onClick: " + users.getEmail() + " " + users.getPassword() + " " + users.getUsername() + " " + users.getFcm_token());
 
             if (mailGood && passGood && rPassGood && !First.isEmpty() && !Username.isEmpty()) {
-                //TODO: @POST signup
                 Retrofit.Builder builder = new Retrofit.Builder()
                         .baseUrl("http://10.0.2.2:3000/")
                         .addConverterFactory(GsonConverterFactory.create());
@@ -159,9 +160,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     public void onResponse(Call<Users> call, Response<Users> response) {
                         Users users = response.body();
                         String xAuth = response.headers().get("x-auth");
-                        //TODO:: save x-auth and user data in shared preferences
 //                        Log.d("homie", "onResponse: "+ (users != null ? users.getId() : null));
 //                        Log.d("homie", "onResponse: "+call);
+                        session.LoginSession(Username, Password, xAuth);
                         Intent i = new Intent(RegistrationActivity.this, WelcomeActivity.class);
                         startActivity(i);
                         finish();

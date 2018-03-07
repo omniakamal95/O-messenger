@@ -18,7 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".registration" />
         <activity android:name=".PreferenceManager" />
         <activity
             android:name=".FriendsActivity"

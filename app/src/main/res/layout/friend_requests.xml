@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <TextView
+        android:id="@+id/reqs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friend Request"
-        android:id="@+id/reqs"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        />
+        android:text="Friend Request"
+        android:textSize="24sp" />
+
     <ListView
         android:id="@+id/friendsRequests"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/reqs"/>
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reqs" />
+</LinearLayout>

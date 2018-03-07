@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.HashMap;
 
 
-
 /**
  * Created by NOSO on 11/29/2017.
  */
@@ -17,8 +16,10 @@ public class PreferenceManager extends AppCompatActivity {
 
     public static final String KEY_NAME = "Username";
     public static final String KEY_PASSWORD = "Password";
+    public static final String KEY_X_AUTH = "x-auth";
     private static final String IS_LOGIN = "IsLoggedIn";
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
+    public static String xAuthToken;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context context;
@@ -33,10 +34,12 @@ public class PreferenceManager extends AppCompatActivity {
         editor = pref.edit();
     }
 
-    public void LoginSession(String name, String Password) {
+    public void LoginSession(String name, String Password, String xAuth) {
         editor.putBoolean(IS_LOGIN, true);
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_PASSWORD, Password);
+        editor.putString(KEY_X_AUTH, xAuth);
+        xAuthToken = xAuth;
         editor.commit();
     }
 
@@ -51,7 +54,7 @@ public class PreferenceManager extends AppCompatActivity {
 
     public void checkLogin() {
         if (!this.isLoggedIn()) {
-            Intent i = new Intent(context,LoginActivity.class);
+            Intent i = new Intent(context, LoginActivity.class);
             context.startActivity(i);
 
         }
@@ -60,8 +63,8 @@ public class PreferenceManager extends AppCompatActivity {
     public boolean isLoggedIn() {
         return pref.getBoolean(IS_LOGIN, false);
     }
-    public void LogoutUser()
-    {
+
+    public void LogoutUser() {
         editor.clear();
         editor.commit();
         Intent i = new Intent(context, LoginActivity.class);

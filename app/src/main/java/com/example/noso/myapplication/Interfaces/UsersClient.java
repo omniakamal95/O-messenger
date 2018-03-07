@@ -4,6 +4,7 @@ import com.example.noso.myapplication.beans.Users;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
@@ -19,6 +20,6 @@ public interface UsersClient {
     @POST("users/login/")
     Call<Users> login(@Body Users users);
 
-    @PUT("users/logout")
-    String logout(@Body String xAuth);
+    @PUT("users/logout/")
+    Call<String> logout(@Header("x-auth") String xAuth);
 }

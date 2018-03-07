@@ -105,11 +105,10 @@ public class LoginActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Username = mail.getText().toString();
-                String Password = pw.getText().toString();
+                final String Username = mail.getText().toString();
+                final String Password = pw.getText().toString();
                 if (mailGood && pwGood) {
-                    Toast.makeText(getApplicationContext(), "Login Successful !", Toast.LENGTH_LONG).show();
-                    session.LoginSession(Username, Password);
+
                     Intent intent = new Intent(getApplicationContext(), notificationServices.class);
                     getApplicationContext().startService(intent);
                     Users users = new Users();
@@ -127,12 +126,17 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(Call<Users> call, Response<Users> response) {
                             Users users = response.body();
                             String xAuth = response.headers().get("x-auth");
-                            //TODO:: save x-auth and user data in shared preferences
-//                        Log.d("homie", "onResponse: "+ (users != null ? users.getId() : null));
-//                        Log.d("homie", "onResponse: "+call);
-                            Intent i = new Intent(LoginActivity.this, WelcomeActivity.class);
-                            startActivity(i);
-                            finish();
+                            Log.d("homie", "onResponse: " + (users != null ? users.getId() : null));
+                            if (users != null) {
+                                //                        Log.d("homie", "onResponse: "+call);
+                                session.LoginSession(Username, Password, xAuth);
+                                Toast.makeText(getApplicationContext(), "Login Successful !", Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(LoginActivity.this, Chats.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Please check your credentials", Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         @Override
