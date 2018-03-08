@@ -133,7 +133,7 @@ public class Chats extends AppCompatActivity {
 
                     }
                 });
-                break;
+                return true;
         }
 
         return false;

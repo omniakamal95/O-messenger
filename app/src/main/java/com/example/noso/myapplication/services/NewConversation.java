@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.noso.myapplication.ChatScreen;
-import com.example.noso.myapplication.CustomArrayAdapter;
 import com.example.noso.myapplication.Interfaces.FriendsClient;
 import com.example.noso.myapplication.PreferenceManager;
 import com.example.noso.myapplication.R;
@@ -31,6 +30,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewConversation extends AppCompatActivity {
     FloatingActionButton fab;
     EditText search;
+    String friend;
+    List<String> Searched = new ArrayList<String>();
+    List<Users> users;
+    ArrayAdapter<String> arrayAdapter;
+    List<String> names;
     private ListView listView;
 
     @Override
@@ -41,9 +45,6 @@ public class NewConversation extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.retrivedFriends);
         fab = findViewById(R.id.searchFriend);
         search = findViewById(R.id.newFriend);
-        String[] itemname = {"Omnia Kamal", "Amira Tarek", "Sherif Amr", "Abdelrahman Tarek", "Mostafa Amr"};
-        Integer[] imgID = {R.drawable.omniakamal, R.drawable.amiratarek, R.drawable.sherifamr, R.drawable.homie, R.drawable.mostafaamr};
-        CustomArrayAdapter adapter = new CustomArrayAdapter(this, itemname, imgID);
 
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:3000/")
@@ -55,10 +56,10 @@ public class NewConversation extends AppCompatActivity {
         call.enqueue(new Callback<List<Users>>() {
             @Override
             public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
-                List<Users> users = response.body();
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(NewConversation.this, android.R.layout.simple_list_item_1);
+                users = response.body();
+                arrayAdapter = new ArrayAdapter<String>(NewConversation.this, android.R.layout.simple_list_item_1);
 
-                List<String> names = new ArrayList<String>();
+                names = new ArrayList<String>();
                 for (int i = 0; i < users.size(); i++) {
                     names.add(users.get(i).getUsername());
                 }
@@ -83,5 +84,42 @@ public class NewConversation extends AppCompatActivity {
 
             }
         });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                friend = search.getText().toString();
+                arrayAdapter.clear();
+
+
+                for (int i = 0; i < users.size(); i++) {
+                    if (friend.equals(users.get(i).getUsername())) {
+                        Searched.add(users.get(i).getUsername());
+                    }
+
+                }
+                arrayAdapter.addAll(Searched);
+                listView.setAdapter(arrayAdapter);
+                Searched.clear();
+
+            }
+        });
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        if (search.getText().toString().isEmpty()) {
+            finish();
+        } else {
+            search.setText("");
+            arrayAdapter.clear();
+            arrayAdapter.addAll(names);
+            listView.setAdapter(arrayAdapter);
+
+        }
     }
 }
