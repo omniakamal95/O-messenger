@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                                 //                        Log.d("homie", "onResponse: "+call);
                                 session.LoginSession(Username, Password, xAuth);
                                 Toast.makeText(getApplicationContext(), "Login Successful !", Toast.LENGTH_LONG).show();
+                                Log.d("homie", "onResponse: " + xAuth);
                                 Intent i = new Intent(LoginActivity.this, Chats.class);
                                 startActivity(i);
                                 finish();

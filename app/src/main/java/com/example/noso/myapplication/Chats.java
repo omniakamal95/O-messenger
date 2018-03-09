@@ -56,12 +56,15 @@ public class Chats extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
                 List<Users> users = response.body();
+                Log.d("homie", "onResponse: " + users.size());
+
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Chats.this, android.R.layout.simple_list_item_1);
 
                 List<String> names = new ArrayList<String>();
-                for (int i = 0; i < users.size(); i++) {
-                    names.add(users.get(i).getUsername());
-                }
+                if (users != null)
+                    for (int i = 0; i < users.size(); i++) {
+                        names.add(users.get(i).getUsername());
+                    }
 
                 arrayAdapter.addAll(names);
 
